@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { readdirSync, existsSync } from "fs";
 import { join } from "path";
 
+export const dynamic = "force-dynamic";
+
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const folder = searchParams.get("folder");
