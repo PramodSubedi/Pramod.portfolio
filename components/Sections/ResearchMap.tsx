@@ -5,13 +5,12 @@ import { MapContainer, ScaleControl, useMap } from "react-leaflet";
 import type { LatLngExpression } from "leaflet";
 import "leaflet/dist/leaflet.css";
 
-import Sidebar, { type LayerGroupDefinition, type LayerDefinition, type ProjectItem } from "./Sidebar";
+import Sidebar, { type LayerGroupDefinition, type ProjectItem } from "./Sidebar";
 import Legend from "./Legend";
 import MapControls from "./MapControls";
 import ResearchLayers from "./ResearchLayers";
 import ResearchMarkers from "./ResearchMarkers";
 import TerrainInfo from "./TerrainInfo";
-import OverviewMap from "./OverviewMap";
 
 const projects: ProjectItem[] = [
   {
@@ -95,57 +94,48 @@ function MapCoordinateReadout({ onChange }: { onChange: (value: [number, number]
 }
 
 export default function ResearchMap() {
-  const [nepalBoundary, setNepalBoundary] = useState<any>(null);
+  const [nepalBoundary, setNepalBoundary] = useState<GeoJSON.GeoJsonObject | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [activeProject, setActiveProject] = useState<ProjectItem | null>(null);
   const [activeBasemap, setActiveBasemap] = useState("imagery");
   const [activeLayers, setActiveLayers] = useState<Record<string, boolean>>({
-    "study-sites": true,
-    "landslide-inventory": true,
-    "susceptibility-map": true,
-    roads: true,
-    rivers: true,
     "administrative-boundary": true,
-    dem: false,
     hillshade: false,
+    dem: false,
     slope: false,
     aspect: false,
     contours: false,
     ndvi: false,
     landcover: false,
     lst: false,
+    "landslide-inventory": false,
+    "susceptibility-map": false,
     flood: false,
     forestinventory: false,
     communities: false,
+    roads: false,
+    rivers: false,
   });
   const [layerVisibility, setLayerVisibility] = useState<Record<string, boolean>>({
-    "study-sites": true,
-    "landslide-inventory": true,
-    "susceptibility-map": true,
-    roads: true,
-    rivers: true,
     "administrative-boundary": true,
-    dem: false,
     hillshade: false,
+    dem: false,
     slope: false,
     aspect: false,
     contours: false,
     ndvi: false,
     landcover: false,
     lst: false,
+    "landslide-inventory": false,
+    "susceptibility-map": false,
     flood: false,
     forestinventory: false,
     communities: false,
+    roads: false,
+    rivers: false,
   });
   const [layerOpacity, setLayerOpacity] = useState<Record<string, number>>({
-    dem: 80,
     hillshade: 70,
-    slope: 75,
-    aspect: 60,
-    contours: 65,
-    ndvi: 80,
-    landcover: 80,
-    lst: 80,
   });
   const [coordinates, setCoordinates] = useState<[number, number]>([28.2, 84]);
 
@@ -189,46 +179,46 @@ export default function ResearchMap() {
         id: "terrain",
         title: "Terrain",
         items: [
-          { id: "dem", label: "DEM", description: "Elevation surface", enabled: activeLayers["dem"], visible: layerVisibility["dem"], raster: true, opacity: layerOpacity["dem"] ?? 80, available: true, loading: false },
           { id: "hillshade", label: "Hillshade", description: "Relief shading", enabled: activeLayers["hillshade"], visible: layerVisibility["hillshade"], raster: true, opacity: layerOpacity["hillshade"] ?? 70, available: true, loading: false },
-          { id: "slope", label: "Slope", description: "Gradient analysis", enabled: activeLayers["slope"], visible: layerVisibility["slope"], raster: true, opacity: layerOpacity["slope"] ?? 75, available: true, loading: false },
-          { id: "aspect", label: "Aspect", description: "Terrain orientation", enabled: activeLayers["aspect"], visible: layerVisibility["aspect"], raster: true, opacity: layerOpacity["aspect"] ?? 60, available: true, loading: false },
-          { id: "contours", label: "Contours", description: "Elevation isolines", enabled: activeLayers["contours"], visible: layerVisibility["contours"], raster: true, opacity: layerOpacity["contours"] ?? 65, available: true, loading: false },
+          { id: "dem", label: "DEM", description: "Elevation surface", enabled: false, visible: false, raster: true, opacity: 80, available: false, loading: false },
+          { id: "slope", label: "Slope", description: "Gradient analysis", enabled: false, visible: false, raster: true, opacity: 75, available: false, loading: false },
+          { id: "aspect", label: "Aspect", description: "Terrain orientation", enabled: false, visible: false, raster: true, opacity: 60, available: false, loading: false },
+          { id: "contours", label: "Contours", description: "Elevation isolines", enabled: false, visible: false, raster: true, opacity: 65, available: false, loading: false },
         ],
       },
       {
         id: "hazards",
         title: "Natural Hazards",
         items: [
-          { id: "landslide-inventory", label: "Landslide Inventory", description: "Hazard footprints", enabled: activeLayers["landslide-inventory"], visible: layerVisibility["landslide-inventory"], available: true, opacity: 100 },
-          { id: "susceptibility-map", label: "Landslide Susceptibility", description: "Vulnerability surfaces", enabled: activeLayers["susceptibility-map"], visible: layerVisibility["susceptibility-map"], available: true, opacity: 100 },
-          { id: "flood", label: "Flood Hazard", description: "Placeholder layer", enabled: activeLayers["flood"], visible: layerVisibility["flood"], available: false, opacity: 100 },
+          { id: "landslide-inventory", label: "Landslide Inventory", description: "Coming soon — see the Landslide project card below for the published inventory map", enabled: false, visible: false, available: false, opacity: 100 },
+          { id: "susceptibility-map", label: "Landslide Susceptibility", description: "Coming soon — see the Landslide project card below for the published result", enabled: false, visible: false, available: false, opacity: 100 },
+          { id: "flood", label: "Flood Hazard", description: "Coming soon", enabled: false, visible: false, available: false, opacity: 100 },
         ],
       },
       {
         id: "forestry",
         title: "Forestry",
         items: [
-          { id: "forestinventory", label: "Forest Inventory", description: "Vegetation mapping", enabled: activeLayers["forestinventory"], visible: layerVisibility["forestinventory"], available: true, opacity: 100 },
-          { id: "communities", label: "Community Forests", description: "Local management units", enabled: activeLayers["communities"], visible: layerVisibility["communities"], available: true, opacity: 100 },
+          { id: "forestinventory", label: "Forest Inventory", description: "Coming soon", enabled: false, visible: false, available: false, opacity: 100 },
+          { id: "communities", label: "Community Forests", description: "Coming soon", enabled: false, visible: false, available: false, opacity: 100 },
         ],
       },
       {
         id: "remote",
         title: "Remote Sensing",
         items: [
-          { id: "ndvi", label: "NDVI", description: "Vegetation index", enabled: activeLayers["ndvi"], visible: layerVisibility["ndvi"], raster: true, opacity: layerOpacity["ndvi"] ?? 80, available: true, loading: false },
-          { id: "landcover", label: "Land Cover", description: "Classification layer", enabled: activeLayers["landcover"], visible: layerVisibility["landcover"], raster: true, opacity: layerOpacity["landcover"] ?? 80, available: true, loading: false },
-          { id: "lst", label: "LST", description: "Land surface temperature", enabled: activeLayers["lst"], visible: layerVisibility["lst"], raster: true, opacity: layerOpacity["lst"] ?? 80, available: true, loading: false },
+          { id: "ndvi", label: "NDVI", description: "Coming soon", enabled: false, visible: false, raster: true, opacity: 80, available: false, loading: false },
+          { id: "landcover", label: "Land Cover", description: "Coming soon", enabled: false, visible: false, raster: true, opacity: 80, available: false, loading: false },
+          { id: "lst", label: "LST", description: "Coming soon", enabled: false, visible: false, raster: true, opacity: 80, available: false, loading: false },
         ],
       },
       {
         id: "administrative",
         title: "Administrative",
         items: [
-          { id: "administrative-boundary", label: "District Boundary", description: "District context", enabled: activeLayers["administrative-boundary"], visible: layerVisibility["administrative-boundary"], available: true, opacity: 100 },
-          { id: "roads", label: "Roads", description: "Transport network", enabled: activeLayers["roads"], visible: layerVisibility["roads"], available: true, opacity: 100 },
-          { id: "rivers", label: "Rivers", description: "Hydrological network", enabled: activeLayers["rivers"], visible: layerVisibility["rivers"], available: true, opacity: 100 },
+          { id: "administrative-boundary", label: "Country Boundary", description: "Nepal outline", enabled: activeLayers["administrative-boundary"], visible: layerVisibility["administrative-boundary"], available: true, opacity: 100 },
+          { id: "roads", label: "Roads", description: "Coming soon", enabled: false, visible: false, available: false, opacity: 100 },
+          { id: "rivers", label: "Rivers", description: "Coming soon", enabled: false, visible: false, available: false, opacity: 100 },
         ],
       },
     ],
@@ -246,7 +236,7 @@ export default function ResearchMap() {
 
     return enabledLayers.length
       ? `Visible layers: ${enabledLayers.join(", ")}`
-      : "Enable one or more layers to explore the research footprint.";
+      : "Enable a layer, or select a project pin, to explore the research footprint.";
   }, [activeLayers, activeProject]);
 
   const handleProjectSelect = (projectId: string) => {
@@ -272,40 +262,23 @@ export default function ResearchMap() {
     setLayerOpacity((prev) => ({ ...prev, [layerId]: value }));
   };
 
-  const handleLocate = () => {
-    if (!navigator.geolocation) return;
-
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        const { latitude, longitude } = position.coords;
-        const map = document.querySelector(".leaflet-container") as HTMLElement | null;
-        if (map) {
-          const leafletMap = (map as any)._leaflet_map as L.Map | undefined;
-          leafletMap?.flyTo([latitude, longitude], 10, { duration: 1.2 });
-        }
-      },
-      () => {}
-    );
-  };
-
-  const handleFullscreen = () => {
-    const element = document.getElementById("research-map-root");
-    if (!element) return;
-
-    if (document.fullscreenElement) {
-      document.exitFullscreen();
-      return;
-    }
-
-    element.requestFullscreen();
-  };
-
-  const handleFitHome = () => {
-    const map = document.querySelector(".leaflet-container") as HTMLElement | null;
-    if (!map) return;
-
-    const leafletMap = (map as any)._leaflet_map as L.Map | undefined;
-    leafletMap?.flyTo([28.2, 84], 7, { duration: 1.2 });
+  const handleReset = () => {
+    setActiveProject(null);
+    setSearchTerm("");
+    setActiveLayers((prev) => {
+      const reset: Record<string, boolean> = {};
+      Object.keys(prev).forEach((key) => {
+        reset[key] = key === "administrative-boundary";
+      });
+      return reset;
+    });
+    setLayerVisibility((prev) => {
+      const reset: Record<string, boolean> = {};
+      Object.keys(prev).forEach((key) => {
+        reset[key] = key === "administrative-boundary";
+      });
+      return reset;
+    });
   };
 
   return (
@@ -349,19 +322,17 @@ export default function ResearchMap() {
         <MapCoordinateReadout onChange={setCoordinates} />
         <ResearchLayers
           nepalBoundary={nepalBoundary}
-          activeLayers={activeLayers}
           activeBasemap={activeBasemap}
           layerVisibility={layerVisibility}
           layerOpacity={layerOpacity}
         />
         <ResearchMarkers projects={filteredProjects} onSelectProject={handleProjectSelect} activeProjectId={activeProject?.id} />
         <ScaleControl position="bottomleft" />
-        <MapControls onFitHome={handleFitHome} onLocate={handleLocate} onFullscreen={handleFullscreen} />
+        <MapControls onReset={handleReset} />
       </MapContainer>
 
       <TerrainInfo coordinates={coordinates} basemap={activeBasemap} visibleLayers={Object.entries(layerVisibility).filter(([, visible]) => visible).map(([layer]) => layer)} />
-      <OverviewMap />
-      <Legend activeLayers={activeLayers} layerVisibility={layerVisibility} layerOpacity={layerOpacity} />
+      <Legend layerVisibility={layerVisibility} layerOpacity={layerOpacity} />
     </div>
   );
 }

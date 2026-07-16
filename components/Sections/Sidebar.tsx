@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { BarChart3, Compass, Layers3, Search, Sparkles, X } from "lucide-react";
+import { BarChart3, Compass, Layers3, Sparkles, X } from "lucide-react";
 import LayerTree from "./LayerTree";
 import BasemapSwitcher from "./BasemapSwitcher";
 import SearchBar from "./SearchBar";
@@ -88,8 +88,8 @@ export default function Sidebar({
     <aside
       className={`absolute z-[1200] ${
         isCompact
-          ? "left-3 right-3 top-3 max-h-[78vh] overflow-auto rounded-[24px]"
-          : "left-4 top-4 h-[calc(100%-2rem)] w-[320px]"
+          ? "left-3 right-3 top-3 max-h-[78vh] overflow-y-auto rounded-[24px]"
+          : "left-4 top-4 h-[calc(100%-2rem)] w-[320px] overflow-y-auto"
       } rounded-[24px] border border-emerald-400/20 bg-slate-950/80 p-4 shadow-[0_20px_60px_rgba(0,0,0,0.45)] backdrop-blur-xl`}
     >
       <div className="mb-4 flex items-start justify-between gap-3">
@@ -153,19 +153,6 @@ export default function Sidebar({
             </div>
           </div>
         ) : null}
-      </div>
-
-      <div className="mt-4 rounded-2xl border border-slate-800/80 bg-slate-900/60 p-3 text-sm text-slate-300">
-        <div className="mb-2 text-[11px] font-semibold uppercase tracking-[0.3em] text-slate-400">
-          Research Summary
-        </div>
-        <div className="space-y-2">
-          <div className="flex items-center justify-between"><span>Projects</span><span className="text-emerald-300">{projects.length}</span></div>
-          <div className="flex items-center justify-between"><span>Publications</span><span className="text-emerald-300">3</span></div>
-          <div className="flex items-center justify-between"><span>Field Surveys</span><span className="text-emerald-300">5</span></div>
-          <div className="flex items-center justify-between"><span>Mapped Landslides</span><span className="text-emerald-300">211+</span></div>
-          <div className="flex items-center justify-between"><span>GIS Tools</span><span className="text-emerald-300">15+</span></div>
-        </div>
       </div>
 
       <div className="mt-4 rounded-2xl border border-slate-800/80 bg-slate-900/60 p-3">

@@ -82,7 +82,7 @@ function buildClusters(projects: ProjectMarkerProps["projects"]): ClusterItem[] 
       if (used.has(candidate.id)) return;
       const latDiff = Math.abs(project.position[0] - candidate.position[0]);
       const lngDiff = Math.abs(project.position[1] - candidate.position[1]);
-      if (latDiff < 0.45 && lngDiff < 0.45) {
+      if (latDiff < 0.08 && lngDiff < 0.08) {
         clusterItems.push(candidate);
         used.add(candidate.id);
       }

@@ -1,7 +1,7 @@
 "use client";
 
 import { memo } from "react";
-import { Compass, Mountain, TrendingUp } from "lucide-react";
+import { Mountain, TrendingUp } from "lucide-react";
 
 interface TerrainInfoProps {
   coordinates: [number, number];
@@ -17,20 +17,8 @@ const TerrainInfo = memo(function TerrainInfo({ coordinates, basemap, visibleLay
       </div>
       <div className="grid gap-2 text-sm text-slate-300">
         <div className="flex items-center justify-between rounded-xl border border-slate-800/80 bg-slate-900/70 px-2 py-2">
-          <span className="text-slate-400">Coordinates</span>
+          <span className="text-slate-400">Map center</span>
           <span>{coordinates[0].toFixed(3)}, {coordinates[1].toFixed(3)}</span>
-        </div>
-        <div className="flex items-center justify-between rounded-xl border border-slate-800/80 bg-slate-900/70 px-2 py-2">
-          <span className="text-slate-400">Elevation</span>
-          <span>1,420 m</span>
-        </div>
-        <div className="flex items-center justify-between rounded-xl border border-slate-800/80 bg-slate-900/70 px-2 py-2">
-          <span className="text-slate-400">Slope</span>
-          <span>18°</span>
-        </div>
-        <div className="flex items-center justify-between rounded-xl border border-slate-800/80 bg-slate-900/70 px-2 py-2">
-          <span className="text-slate-400">Aspect</span>
-          <span>SE</span>
         </div>
         <div className="flex items-center justify-between rounded-xl border border-slate-800/80 bg-slate-900/70 px-2 py-2">
           <span className="text-slate-400">Basemap</span>

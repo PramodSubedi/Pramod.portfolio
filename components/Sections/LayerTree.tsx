@@ -3,7 +3,7 @@
 import { memo, useState } from "react";
 import { ChevronDown, ChevronRight, Layers3 } from "lucide-react";
 import LayerItem from "./LayerItem";
-import type { LayerDefinition, LayerGroupDefinition } from "./Sidebar";
+import type { LayerGroupDefinition } from "./Sidebar";
 
 interface LayerTreeProps {
   groups: LayerGroupDefinition[];

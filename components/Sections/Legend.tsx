@@ -4,12 +4,11 @@ import { useEffect, useMemo, useState } from "react";
 import { ChevronDown, ChevronUp, Layers3 } from "lucide-react";
 
 interface LegendProps {
-  activeLayers: Record<string, boolean>;
   layerVisibility: Record<string, boolean>;
   layerOpacity: Record<string, number>;
 }
 
-export default function Legend({ activeLayers, layerVisibility, layerOpacity }: LegendProps) {
+export default function Legend({ layerVisibility, layerOpacity }: LegendProps) {
   const [collapsed, setCollapsed] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -23,24 +22,19 @@ export default function Legend({ activeLayers, layerVisibility, layerOpacity }: 
   const legendItems = useMemo(() => {
     const items: Array<{ label: string; swatch: string; detail?: string }> = [];
 
-    if (layerVisibility.dem || layerVisibility.hillshade || layerVisibility.slope) {
-      items.push({ label: "Elevation / Terrain", swatch: "bg-gradient-to-r from-emerald-500 to-sky-500", detail: `Opacity ${layerOpacity.dem ?? 80}%` });
+    if (layerVisibility.hillshade) {
+      items.push({ label: "Hillshade", swatch: "bg-gradient-to-r from-emerald-500 to-sky-500", detail: `Opacity ${layerOpacity.hillshade ?? 70}%` });
     }
-    if (layerVisibility["landslide-inventory"] || layerVisibility["susceptibility-map"]) {
-      items.push({ label: "Hazard Susceptibility", swatch: "bg-gradient-to-r from-amber-500 to-orange-600", detail: "Very Low → Very High" });
+    if (layerVisibility["administrative-boundary"]) {
+      items.push({ label: "Country Boundary", swatch: "bg-slate-300", detail: "Nepal outline" });
     }
-    if (layerVisibility.ndvi || layerVisibility.landcover || layerVisibility.lst) {
-      items.push({ label: "Remote Sensing", swatch: "bg-gradient-to-r from-sky-500 to-cyan-400", detail: "NDVI / LST / Land Cover" });
-    }
-    if (layerVisibility["study-sites"]) {
-      items.push({ label: "Study Sites", swatch: "bg-emerald-500", detail: "Forestry = green • Hazard = orange • Remote = blue" });
-    }
+    items.push({ label: "Study Sites", swatch: "bg-emerald-500", detail: "Forestry = green • Hazard = amber • Remote = blue" });
     if (items.length === 0) {
-      items.push({ label: "No active raster layers", swatch: "bg-slate-600", detail: "Enable a layer to populate the legend" });
+      items.push({ label: "No active layers", swatch: "bg-slate-600", detail: "Enable a layer to populate the legend" });
     }
 
     return items;
-  }, [activeLayers, layerOpacity, layerVisibility]);
+  }, [layerOpacity, layerVisibility]);
 
   if (isMobile && collapsed) {
     return (

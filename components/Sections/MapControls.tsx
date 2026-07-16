@@ -1,20 +1,48 @@
 "use client";
 
-import { Fullscreen, LocateFixed, RotateCcw, ScanLine } from "lucide-react";
+import { useState } from "react";
+import { Fullscreen, LocateFixed, RotateCcw, Loader2 } from "lucide-react";
 import { useMap } from "react-leaflet";
 
 interface MapControlsProps {
-  onFitHome: () => void;
-  onLocate: () => void;
-  onFullscreen: () => void;
+  onReset: () => void;
 }
 
-export default function MapControls({ onFitHome, onLocate, onFullscreen }: MapControlsProps) {
+export default function MapControls({ onReset }: MapControlsProps) {
   const map = useMap();
+  const [locating, setLocating] = useState(false);
 
   const handleHome = () => {
-    onFitHome();
+    onReset();
     map.flyTo([28.2, 84], 7, { duration: 1.2 });
+  };
+
+  const handleLocate = () => {
+    if (!navigator.geolocation) return;
+
+    setLocating(true);
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const { latitude, longitude } = position.coords;
+        map.flyTo([latitude, longitude], 11, { duration: 1.2 });
+        setLocating(false);
+      },
+      () => {
+        setLocating(false);
+      }
+    );
+  };
+
+  const handleFullscreen = () => {
+    const element = document.getElementById("research-map-root");
+    if (!element) return;
+
+    if (document.fullscreenElement) {
+      document.exitFullscreen();
+      return;
+    }
+
+    element.requestFullscreen();
   };
 
   return (
@@ -23,32 +51,28 @@ export default function MapControls({ onFitHome, onLocate, onFullscreen }: MapCo
         type="button"
         onClick={handleHome}
         className="rounded-2xl border border-slate-700/70 bg-slate-950/80 p-2.5 text-slate-100 shadow-lg backdrop-blur transition hover:border-emerald-400/40"
-        aria-label="Zoom home"
+        aria-label="Reset view and layers"
+        title="Reset view and layers"
       >
         <RotateCcw size={16} />
       </button>
       <button
         type="button"
-        onClick={onLocate}
+        onClick={handleLocate}
         className="rounded-2xl border border-slate-700/70 bg-slate-950/80 p-2.5 text-slate-100 shadow-lg backdrop-blur transition hover:border-emerald-400/40"
         aria-label="Locate me"
+        title="Locate me"
       >
-        <LocateFixed size={16} />
+        {locating ? <Loader2 size={16} className="animate-spin" /> : <LocateFixed size={16} />}
       </button>
       <button
         type="button"
-        onClick={onFullscreen}
+        onClick={handleFullscreen}
         className="rounded-2xl border border-slate-700/70 bg-slate-950/80 p-2.5 text-slate-100 shadow-lg backdrop-blur transition hover:border-emerald-400/40"
         aria-label="Fullscreen"
+        title="Fullscreen"
       >
         <Fullscreen size={16} />
-      </button>
-      <button
-        type="button"
-        className="rounded-2xl border border-slate-700/70 bg-slate-950/80 p-2.5 text-slate-100 shadow-lg backdrop-blur transition hover:border-emerald-400/40"
-        aria-label="Map tools"
-      >
-        <ScanLine size={16} />
       </button>
     </div>
   );
