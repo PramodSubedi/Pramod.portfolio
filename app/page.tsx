@@ -5,7 +5,7 @@ import About from "@/components/Sections/About";
 import Timeline from "@/components/Sections/Timeline";
 /* import ResearchAreas from "@/components/Sections/ResearchAreas"; */
 import Projects from "@/components/Sections/Projects";
-import ResearchFootprints from "@/components/Sections/ResearchFootprintsClient";
+/* import ResearchFootprints from "@/components/Sections/ResearchFootprintsClient"; */
 import Tools from "@/components/Sections/Tools";
 import Publications from "@/components/Sections/Publications";
 import Contact from "@/components/Sections/Contact";
@@ -21,7 +21,7 @@ export default function Home() {
       <Timeline />
       {/* <ResearchAreas /> */}
       <Projects />
-      <ResearchFootprints />
+      {/* <ResearchFootprints /> */}  
       <Tools />
       <Publications />
       <Contact />

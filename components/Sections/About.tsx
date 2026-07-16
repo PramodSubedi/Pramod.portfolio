@@ -175,7 +175,7 @@ export default function About() {
                       Domain
                     </p>
                     <p className="text-sm font-medium">
-                      GIS • Remote Sensing<br/>• Natural Hazards
+                      Forestry • GIS • Remote Sensing • Natural Hazards
                     </p>
                   </div>
                 </div>

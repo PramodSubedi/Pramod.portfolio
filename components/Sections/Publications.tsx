@@ -74,7 +74,7 @@ const publications = [
       "https://www.researchgate.net/publication/405856172_Evaluating_Timber_Volume_Discrepancies_in_Teak_Plantations_of_the_Sagarnath_Forest_Development_Project_Nepal_A_Comparative_Study",
 
     doi:
-      "https://doi.org/10.22034/ijf.2025.492785.2023",
+      "https://www.ijf-isaforestry.ir/article_231425.html",
 
     metrics: [
       {
