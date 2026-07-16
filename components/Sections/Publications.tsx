@@ -1,7 +1,10 @@
+import Image from "next/image";
+
 const publications = [
   {
     status: "Published | First Author",
     icon: "🌋",
+    image: "/images/publications/landslide-paper.webp",
 
     title:
       "Landslide Susceptibility Mapping Using GIS-Based Frequency Ratio Method in Eastern Nepal",
@@ -50,6 +53,7 @@ const publications = [
   {
     status: "Published | Co-author",
     icon: "🌲",
+    image: "/images/publications/timber-paper.webp",
 
     title:
       "Evaluating Timber Volume Discrepancies in Teak Plantations of the Sagarnath Forest Development Project, Nepal: A Comparative Study",
@@ -195,7 +199,6 @@ export default function Publications() {
               "
             >
 
-
               <div className="flex items-center gap-4">
 
                 <span className="text-4xl">
@@ -235,111 +238,130 @@ export default function Publications() {
 
 
 
-              {/* Metrics */}
-              <div className="mt-10 grid gap-5 md:grid-cols-3">
+              <div className={`mt-10 grid gap-8 ${paper.image ? "md:grid-cols-3" : ""}`}>
 
-                {paper.metrics.map((metric) => (
+                <div className={paper.image ? "md:col-span-2" : ""}>
 
-                  <div
-                    key={metric.label}
-                    className="
-                    rounded-2xl
-                    border
-                    border-white/10
-                    bg-black/20
-                    p-5
-                    text-center
-                    "
-                  >
+                  {/* Metrics */}
+                  <div className="grid gap-5 sm:grid-cols-3">
 
-                    <p className="text-3xl font-bold text-emerald-400">
-                      {metric.value}
-                    </p>
+                    {paper.metrics.map((metric) => (
 
-                    <p className="mt-2 text-sm text-gray-400">
-                      {metric.label}
-                    </p>
+                      <div
+                        key={metric.label}
+                        className="
+                        rounded-2xl
+                        border
+                        border-white/10
+                        bg-black/20
+                        p-5
+                        text-center
+                        "
+                      >
+
+                        <p className="text-3xl font-bold text-emerald-400">
+                          {metric.value}
+                        </p>
+
+                        <p className="mt-2 text-sm text-gray-400">
+                          {metric.label}
+                        </p>
+
+                      </div>
+
+                    ))}
 
                   </div>
 
-                ))}
-
-              </div>
 
 
+                  {/* Methods */}
+                  <div className="mt-8 flex flex-wrap gap-3">
 
-              {/* Methods */}
-              <div className="mt-8 flex flex-wrap gap-3">
+                    {paper.methods.map((method) => (
 
-                {paper.methods.map((method) => (
+                      <span
+                        key={method}
+                        className="
+                        rounded-full
+                        border
+                        border-emerald-500/40
+                        px-4
+                        py-2
+                        text-sm
+                        text-emerald-300
+                        "
+                      >
+                        {method}
+                      </span>
 
-                  <span
-                    key={method}
-                    className="
-                    rounded-full
-                    border
-                    border-emerald-500/40
-                    px-4
-                    py-2
-                    text-sm
-                    text-emerald-300
-                    "
-                  >
-                    {method}
-                  </span>
+                    ))}
 
-                ))}
-
-              </div>
+                  </div>
 
 
 
-              {/* Links */}
-              <div className="mt-8 flex flex-wrap gap-4">
+                  {/* Links */}
+                  <div className="mt-8 flex flex-wrap gap-4">
 
 
-                {paper.researchGate && (
-                  <a
-                    href={paper.researchGate}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="
-                    rounded-xl
-                    bg-emerald-500
-                    px-6
-                    py-3
-                    font-semibold
-                    text-black
-                    transition
-                    hover:bg-emerald-400
-                    "
-                  >
-                    ResearchGate →
-                  </a>
+                    {paper.researchGate && (
+                      <a
+                        href={paper.researchGate}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="
+                        rounded-xl
+                        bg-emerald-500
+                        px-6
+                        py-3
+                        font-semibold
+                        text-black
+                        transition
+                        hover:bg-emerald-400
+                        "
+                      >
+                        ResearchGate →
+                      </a>
+                    )}
+
+
+
+                    {paper.doi && (
+                      <a
+                        href={paper.doi}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="
+                        rounded-xl
+                        border
+                        border-emerald-500
+                        px-6
+                        py-3
+                        text-emerald-300
+                        transition
+                        hover:bg-emerald-500/10
+                        "
+                      >
+                        DOI →
+                      </a>
+                    )}
+
+
+                  </div>
+
+                </div>
+
+                {paper.image && (
+                  <div className="relative h-48 w-full overflow-hidden rounded-2xl border border-white/10 md:h-full">
+                    <Image
+                      src={paper.image}
+                      alt={paper.title}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
                 )}
-
-
-
-                {paper.doi && (
-                  <a
-                    href={paper.doi}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="
-                    rounded-xl
-                    border
-                    border-emerald-500
-                    px-6
-                    py-3
-                    text-emerald-300
-                    transition
-                    hover:bg-emerald-500/10
-                    "
-                  >
-                    DOI →
-                  </a>
-                )}
-
 
               </div>
 

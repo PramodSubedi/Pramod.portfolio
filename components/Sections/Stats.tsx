@@ -23,7 +23,7 @@ const stats = [
 
 export default function Stats() {
   return (
-    <section className="border-t border-white/10 py-24">
+    <section id="stats" className="border-t border-white/10 py-24">
       <div className="mx-auto max-w-7xl px-6">
 
         <div className="mb-14 text-center">

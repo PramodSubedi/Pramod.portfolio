@@ -60,7 +60,7 @@ const timeline = [
 
 export default function Timeline() {
   return (
-    <section className="relative py-32">
+    <section id="journey" className="relative py-32">
 
       <div className="mx-auto max-w-6xl px-6">
 

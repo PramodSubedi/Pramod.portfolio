@@ -235,7 +235,7 @@ export default function Contact() {
 
 
           <a
-           href="https://mail.google.com/mail/?view=cm&fs=1&to=pramod.subedi.np@google.com"
+           href="https://mail.google.com/mail/?view=cm&fs=1&to=subedi019@gmail.com"
            className="
            rounded-xl
            border

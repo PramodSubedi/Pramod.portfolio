@@ -19,28 +19,42 @@ import "leaflet/dist/leaflet.css";
 
 
 // -----------------------------
-// Custom Icons
+// Custom Icons (inline SVG — no external image files needed,
+// which is what was causing markers to render broken/missing)
 // -----------------------------
 
-const hazardIcon = new L.Icon({
+function markerSvg(color: string, emoji: string) {
+  return `
+    <div style="
+      width: 34px;
+      height: 34px;
+      border-radius: 9999px;
+      background: ${color};
+      border: 2px solid rgba(255,255,255,0.85);
+      box-shadow: 0 0 0 4px rgba(0,0,0,0.15), 0 4px 10px rgba(0,0,0,0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      line-height: 1;
+    ">${emoji}</div>
+  `;
+}
 
-  iconUrl: "/icons/hazard.png",
-
-  iconSize: [42, 42],
-
-  iconAnchor: [21,42],
-
+const hazardIcon = L.divIcon({
+  html: markerSvg("#f59e0b", "⚠️"),
+  className: "",
+  iconSize: [34, 34],
+  iconAnchor: [17, 34],
+  popupAnchor: [0, -30],
 });
 
-
-const forestIcon = new L.Icon({
-
-  iconUrl: "/icons/forest.png",
-
-  iconSize: [42,42],
-
-  iconAnchor: [21,42],
-
+const forestIcon = L.divIcon({
+  html: markerSvg("#10b981", "🌲"),
+  className: "",
+  iconSize: [34, 34],
+  iconAnchor: [17, 34],
+  popupAnchor: [0, -30],
 });
 
 
@@ -173,9 +187,11 @@ useEffect(()=>{
 
 fetch("/geojson/nepal.json")
 
-.then(res=>res.json())
+.then(res => (res.ok ? res.json() : null))
 
-.then(data=>setNepalBoundary(data));
+.then(data => setNepalBoundary(data))
+
+.catch(() => setNepalBoundary(null));
 
 
 },[]);
@@ -309,13 +325,8 @@ scrollWheelZoom={true}
 {/* Satellite Imagery */}
 
 <TileLayer
-
-
-url="
-https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}
-"
-
-
+  url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+  attribution="Tiles &copy; Esri"
 />
 
 

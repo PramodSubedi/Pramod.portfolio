@@ -62,7 +62,7 @@ const toolCategories = [
 
 export default function Tools() {
   return (
-    <section className="py-32">
+    <section id="skills" className="py-32">
 
       <div className="mx-auto max-w-7xl px-6">
 
