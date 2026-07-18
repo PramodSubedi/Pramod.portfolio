@@ -151,25 +151,25 @@ const publications = [
 
 export default function Publications() {
   return (
-    <section id="publications" className="py-32">
+    <section id="publications" className="px-4 py-20 sm:px-6 lg:px-8 lg:py-32">
 
-      <div className="mx-auto max-w-7xl px-6">
+      <div className="mx-auto max-w-7xl">
 
 
         {/* Header */}
         <div className="text-center">
 
-          <p className="text-sm uppercase tracking-[0.4em] text-emerald-400">
+          <p className="text-xs uppercase tracking-[0.35em] text-emerald-400 sm:text-sm">
             Publications & Research Outputs
           </p>
 
 
-          <h2 className="mt-4 font-serif text-5xl font-bold">
+          <h2 className="mt-4 font-serif text-3xl font-bold sm:text-4xl lg:text-5xl">
             Scientific Contributions
           </h2>
 
 
-          <p className="mx-auto mt-6 max-w-3xl text-lg text-gray-400">
+          <p className="mx-auto mt-6 max-w-3xl text-base text-gray-400 sm:text-lg">
             Research contributions spanning natural hazards,
             geospatial modelling, forestry measurements,
             and environmental assessment.
@@ -192,9 +192,10 @@ export default function Publications() {
               border
               border-white/10
               bg-white/5
-              p-8
+              p-5
               transition
               hover:border-emerald-500/50
+              sm:p-8
               md:p-10
               "
             >
@@ -206,7 +207,7 @@ export default function Publications() {
                 </span>
 
 
-                <p className="text-sm uppercase tracking-[0.3em] text-emerald-400">
+                <p className="text-xs uppercase tracking-[0.28em] text-emerald-400 sm:text-sm">
                   {paper.status}
                 </p>
 
@@ -214,25 +215,25 @@ export default function Publications() {
 
 
 
-              <h3 className="mt-5 text-3xl font-semibold">
+              <h3 className="mt-5 text-2xl font-semibold leading-tight sm:text-3xl">
                 {paper.title}
               </h3>
 
 
 
-              <p className="mt-3 text-gray-300">
+              <p className="mt-3 text-sm text-gray-300 sm:text-base">
                 {paper.role}
               </p>
 
 
 
-              <p className="mt-2 text-gray-400">
+              <p className="mt-2 text-sm text-gray-400 sm:text-base">
                 {paper.journal} • {paper.year}
               </p>
 
 
 
-              <p className="mt-6 max-w-5xl leading-8 text-gray-300">
+              <p className="mt-6 max-w-5xl text-base leading-7 text-gray-300 sm:text-lg sm:leading-8">
                 {paper.description}
               </p>
 
@@ -243,7 +244,7 @@ export default function Publications() {
                 <div className={paper.image ? "md:col-span-2" : ""}>
 
                   {/* Metrics */}
-                  <div className="grid gap-5 sm:grid-cols-3">
+                  <div className="grid gap-3 sm:grid-cols-3 sm:gap-5">
 
                     {paper.metrics.map((metric) => (
 
@@ -254,16 +255,17 @@ export default function Publications() {
                         border
                         border-white/10
                         bg-black/20
-                        p-5
+                        p-4
                         text-center
+                        sm:p-5
                         "
                       >
 
-                        <p className="text-3xl font-bold text-emerald-400">
+                        <p className="text-2xl font-bold text-emerald-400 sm:text-3xl">
                           {metric.value}
                         </p>
 
-                        <p className="mt-2 text-sm text-gray-400">
+                        <p className="mt-2 text-xs text-gray-400 sm:text-sm">
                           {metric.label}
                         </p>
 
@@ -286,10 +288,11 @@ export default function Publications() {
                         rounded-full
                         border
                         border-emerald-500/40
-                        px-4
+                        px-3
                         py-2
-                        text-sm
+                        text-xs
                         text-emerald-300
+                        sm:text-sm
                         "
                       >
                         {method}
@@ -313,12 +316,14 @@ export default function Publications() {
                         className="
                         rounded-xl
                         bg-emerald-500
-                        px-6
+                        px-5
                         py-3
+                        text-sm
                         font-semibold
                         text-black
                         transition
                         hover:bg-emerald-400
+                        sm:px-6
                         "
                       >
                         ResearchGate →
@@ -336,11 +341,13 @@ export default function Publications() {
                         rounded-xl
                         border
                         border-emerald-500
-                        px-6
+                        px-5
                         py-3
+                        text-sm
                         text-emerald-300
                         transition
                         hover:bg-emerald-500/10
+                        sm:px-6
                         "
                       >
                         DOI →

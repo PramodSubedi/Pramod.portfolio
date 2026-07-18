@@ -66,13 +66,13 @@ export default function About() {
 
           {/* About Card */}
           <FadeUp delay={0.2}>
-            <Card className="p-8">
+            <Card className="p-5 sm:p-8">
               <div className="space-y-4">
                 <div>
                   <p className="text-sm uppercase tracking-[0.25em] text-emerald-400 mb-4">
                     About Me
                   </p>
-                  <p className="text-lg leading-8 text-gray-300">
+                  <p className="text-base leading-7 text-gray-300 sm:text-lg sm:leading-8">
                     I am a geospatial researcher from Nepal working at the
                     intersection of GIS, Remote Sensing, and Forestry.
                     My research integrates satellite data,
@@ -83,7 +83,7 @@ export default function About() {
                 </div>
 
                 <div>
-                  <p className="text-lg leading-8 text-gray-300">
+                  <p className="text-base leading-7 text-gray-300 sm:text-lg sm:leading-8">
                     My work focuses on landslide susceptibility
                     mapping, hazard assessment, and geospatial
                     approaches that support disaster risk reduction
@@ -97,7 +97,7 @@ export default function About() {
 
           {/* Technical Skills Card */}
           <FadeUp delay={0.3}>
-            <Card className="p-8">
+            <Card className="p-5 sm:p-8">
               <div className="space-y-6">
                 <div>
                   <p className="text-sm uppercase tracking-[0.25em] text-emerald-400 mb-2">

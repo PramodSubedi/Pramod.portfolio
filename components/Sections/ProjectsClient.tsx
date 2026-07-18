@@ -102,8 +102,8 @@ export default function ProjectsClient({
   ];
 
   return (
-    <section id="projects" className="py-32">
-      <div className="mx-auto max-w-7xl px-6">
+    <section id="projects" className="px-4 py-20 sm:px-6 lg:px-8 lg:py-32">
+      <div className="mx-auto max-w-7xl">
 
         <SectionHeading
           eyebrow="Selected Research & Field Experience"
@@ -132,9 +132,9 @@ export default function ProjectsClient({
                 }}
               >
 
-                <Card className="p-8 md:p-10">
+                <Card className="p-5 sm:p-8 md:p-10">
 
-                  <div className="grid gap-10 md:grid-cols-3">
+                  <div className="grid gap-8 md:grid-cols-3 md:gap-10">
 
                     {/* Left */}
                     <div className="md:col-span-2">
@@ -151,15 +151,15 @@ export default function ProjectsClient({
 
                       </div>
 
-                      <h3 className="mt-6 text-3xl font-semibold">
+                      <h3 className="mt-6 text-2xl font-semibold leading-tight sm:text-3xl">
                         {project.title}
                       </h3>
 
-                      <p className="mt-2 text-gray-400">
+                      <p className="mt-2 text-sm text-gray-400 sm:text-base">
                         {project.role}
                       </p>
 
-                      <p className="mt-6 leading-8 text-gray-300">
+                      <p className="mt-6 text-base leading-7 text-gray-300 sm:text-lg sm:leading-8">
                         {project.description}
                       </p>
 
@@ -175,9 +175,9 @@ export default function ProjectsClient({
 
                             <li
                               key={item}
-                              className="flex items-start gap-3 text-gray-300"
+                              className="flex items-start gap-3 text-sm text-gray-300 sm:text-base"
                             >
-                              <CheckCircle2 className="mt-1 h-5 w-5 text-emerald-400" />
+                              <CheckCircle2 className="mt-1 h-4 w-4 flex-shrink-0 text-emerald-400 sm:h-5 sm:w-5" />
                               <span>{item}</span>
                             </li>
 
@@ -200,7 +200,7 @@ export default function ProjectsClient({
                         />
                       )}
 
-                      <Card className="p-6">
+                      <Card className="p-5 sm:p-6">
 
                         <p className="text-sm uppercase tracking-[0.25em] text-emerald-400">
                           Tools & Methods

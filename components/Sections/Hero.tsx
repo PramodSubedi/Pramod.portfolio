@@ -6,9 +6,9 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative flex min-h-screen items-center justify-center"
+      className="relative flex min-h-screen items-center justify-center px-4 py-24 sm:px-6"
     >
-      <div className="mx-auto max-w-5xl px-6 text-center">
+      <div className="mx-auto max-w-5xl text-center">
 
         {/* Research Identity */}
         <FadeUp>
@@ -19,7 +19,7 @@ export default function Hero() {
 
         {/* Main Heading */}
         <FadeUp delay={0.1}>  
-        <h1 className="mx-auto max-w-4xl font-serif text-6xl font-bold leading-tight md:text-7xl">
+        <h1 className="mx-auto max-w-4xl font-serif text-3.5rem font-bold leading-[0.95] sm:text-5xl md:text-7xl">
           Mapping Hazards
           <br />
           Across the Himalaya
@@ -27,7 +27,7 @@ export default function Hero() {
         </FadeUp>
 
         {/* Description */}
-        <p className="mx-auto mt-8 max-w-3xl text-lg leading-8 text-gray-300">
+        <p className="mx-auto mt-8 max-w-3xl text-base leading-8 text-gray-300 sm:text-lg">
           Exploring the Hindu Kush Himalaya through GIS, Remote Sensing,
           and field-based research to advance landslide susceptibility
           mapping, environmental monitoring, and disaster risk reduction.
@@ -50,7 +50,7 @@ export default function Hero() {
       </div>
 
       {/* Scroll Indicator */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 animate-bounce sm:bottom-8">
 
         <a
           href="#about"
